@@ -15,4 +15,6 @@ completion = openai.ChatCompletion.create(
         {"role": "assistant", "content": "Q: How do you make 7 even? A: Take away the s."},
         {"role": "user", "content": "Write one related to economists."}
         ]
+
+        print(completion.choices[0].message)
 )
