@@ -6,4 +6,4 @@ from django.conf import settings
 # Create your views here.
 def index(request):
     apikey = settings.OPENAI_API_KEY
-    return render(request, "aginy/index.html")
+    return render(request, "aginy/index.html", {})

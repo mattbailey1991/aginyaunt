@@ -18,16 +18,28 @@
         <div class = "container-fluid px-0">
             <nav class="navbar navbar-expand-md navbar-dark" style="background-color: #344e41">
                 <div class="container-fluid">
-                <a class="navbar-brand" href="index.html">Home</a>
-                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
-                    <span class="navbar-toggler-icon"></span>
-                </button>
-                <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
-                    <div class="navbar-nav">
-                    <a class="nav-link" href="info.html">Information</a>
-                    <a class="nav-link" href="contact.html">Contact Us</a>
+                    <a class="navbar-brand" href="{% url 'index' %}">Home</a>
+                    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+                        <span class="navbar-toggler-icon"></span>
+                    </button>
+                    <div class="collapse navbar-collapse justify-content-between" id="navbarNavAltMarkup">
+                        <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
+                            <li>
+                                <a class="nav-link" href="info.html">Information</a>
+                            </li>
+                            <li>
+                                <a class="nav-link" href="contact.html">Contact Us</a>
+                            </li>
+                        </ul>
+                        <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
+                            <li>
+                               <a class="nav-link" href="{% url 'login' %}">Log-in</a> 
+                            </li>
+                            <li>
+                                <a class="nav-link" href="{% url 'register' %}">Register</a>
+                            </li>
+                        </ul>
                     </div>
-                </div>
                 </div>
             </nav>
         </div>
