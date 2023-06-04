@@ -1,0 +1,14 @@
+{% extends "aginy/layout.html" %}
+
+{% block title %}
+Aginy Aunt
+{% endblock %}
+
+{% block body %}
+{% load static %}
+<img src="{% static 'teacup_home.png' %}">
+<form>
+    <input type="text" placeholder="Tell me all about it...">
+    <button></button>
+</form>
+{% endblock %}
