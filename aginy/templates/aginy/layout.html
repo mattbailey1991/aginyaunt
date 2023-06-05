@@ -31,6 +31,7 @@
                                 <a class="nav-link" href="contact.html">Contact Us</a>
                             </li>
                         </ul>
+                        {% if not user.is_authenticated %}
                         <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
                             <li>
                                <a class="nav-link" href="{% url 'login' %}">Log-in</a> 
@@ -39,10 +40,24 @@
                                 <a class="nav-link" href="{% url 'register' %}">Register</a>
                             </li>
                         </ul>
+                        {% else %}
+                        <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
+                            <li>
+                               <a class="nav-link" href="{% url 'logout' %}">Log-out</a> 
+                            </li>
+                        </ul>
+                        {% endif %}
                     </div>
                 </div>
             </nav>
         </div>
+        {% if message %}
+        <div class="container-fluid px-0">
+            <div class="alert alert-info" role="alert">
+                {{ message }}
+            </div>
+        </div>
+        {% endif %}
         {% block body %}
         {% endblock %}
     </body>
