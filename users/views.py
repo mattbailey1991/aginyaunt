@@ -26,13 +26,15 @@ def register_user(request):
     if request.method == "POST":
         form = UserCreationForm(request.POST)
         if form.is_valid():
-            form.save
+            form.save()
             username = form.cleaned_data['username']
             password = form.cleaned_data['password1']
-            user = authenticate(username = username, password = password)
+            user = authenticate(username=username, password=password)
             login(request, user)
-            message = "New account registered"
-            return render(request, 'authentication/login.html', {'message': message})
+            return redirect('index')
+        else:
+            message = "Please correct the errors below"
+            return render(request, 'authentication/register.html', {'form': form, 'message': message})
     else:
         form = UserCreationForm
         return render(request, 'authentication/register.html', {'form': form})
