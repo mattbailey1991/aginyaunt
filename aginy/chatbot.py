@@ -2,13 +2,12 @@ import os
 import openai
 from dotenv import load_dotenv
 
-class OpenAIBot:
-    def __init__(self):
+class OpenAIBot():
+    def __init__(self, key):
         # Sets API key and provides initial system message to bot
         load_dotenv("api.env")
-        openai.api_key = os.getenv("OPENAI_API_KEY")
+        openai.api_key = key
         self.messages = [
-            ""
             {"role": "system", 
              "content": """You will pretend to be an agony aunt, similar to Ask Philippa, Coleen Nolan, or Dear Julia. 
              You will listen to relationship issues, career problems, or everyday life. Please be as supportive and constructive as possible. 

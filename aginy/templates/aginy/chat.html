@@ -6,9 +6,7 @@ Aginy Aunt
 
 {% block body %}
 {% load static %}
-<img src="{% static 'teacup_home.png' %}">
-<form>
-    <input type="text" placeholder="Tell me all about it...">
-    <button></button>
-</form>
+<p>{{ prompt }}</p>
+<p>{{ completion }}</p>
+<form action=""
 {% endblock %}

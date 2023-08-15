@@ -7,8 +7,9 @@ Aginy Aunt
 {% block body %}
 {% load static %}
 <img src="{% static 'aginy/teacup_home.png' %}">
-<form>
-    <input type="text" placeholder="Tell me all about it...">
-    <button></button>
+<form action="chat/" method="POST">
+    {% csrf_token %}
+    <input type="text" id="prompt" name="prompt" placeholder="Tell me all about it...">
+    <input type="submit" value="Go">
 </form>
 {% endblock %}
