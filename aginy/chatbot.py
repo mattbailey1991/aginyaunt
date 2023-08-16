@@ -43,5 +43,6 @@ class OpenAIBot():
             model="gpt-3.5-turbo",
             messages=self.messages
         )
-        self.messages.append({"role": "assistant", "content": response["choices"][0]["message"].content})
-        return response["choices"][0]["message"]
+        reply = response["choices"][0]["message"].content
+        self.messages.append({"role": "assistant", "content": reply})
+        return reply

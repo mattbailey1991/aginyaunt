@@ -12,5 +12,6 @@ def chatpage(request):
     apikey = settings.OPENAI_API_KEY
     bot = OpenAIBot(apikey)
     prompt = request.POST.get("prompt")
-    completion = bot.chat(prompt)['content']
-    return render(request, "aginy/chat.html", {'prompt': prompt, 'completion': completion})
+    completion = bot.chat(prompt)
+    messages = bot.messages[1:]
+    return render(request, "aginy/chat.html", {'messages': messages})
