@@ -6,7 +6,7 @@ Aginy Aunt
 
 {% block scripts %}
 {% load static %}
-<link rel="stylesheet" href="{% static 'aginy/chatpage.js' %}">
+<script type="text/javascript" src="{% static 'aginy/chatpage.js' %}"></script>
 {% endblock %}
 
 {% block body %}
@@ -16,10 +16,10 @@ Aginy Aunt
     {% endfor %}
 </div>
 <div id="chatbox">
-    <form id="chat-form" action="" method="POST">
+    <form id="chat-form" onsubmit = "return false">
         {% csrf_token %}
         <input type="text" id="prompt" name="prompt" placeholder="Tell me more...">
-        <input type="submit" value="Go">
+        <input id ="submit-button" type="submit" value="Go">
     </form>
 </div>
 

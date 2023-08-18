@@ -1,10 +1,13 @@
 $(document).ready(function(){
-    $('#chat-form').on("submit", function (event) {
-        event.preventDefault()
+    $('#chat-form').submit(function (event) {
+        event.preventDefault();
         $.ajax({
             type: 'POST',
-            url: {% url 'chat' %},
-            data: $(this).serialize()
+            url: "",
+            data: $(this).serialize(),
+            success: function(response) {
+                $(this).trigger('reset');
+            }
         });
     });
 })

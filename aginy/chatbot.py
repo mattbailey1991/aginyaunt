@@ -3,7 +3,7 @@ import openai
 from dotenv import load_dotenv
 
 class OpenAIBot():
-    def __init__(self, key):
+    def __init__(self, key, message_history = []):
         # Sets API key and provides initial system message to bot
         load_dotenv("api.env")
         openai.api_key = key
@@ -35,7 +35,7 @@ class OpenAIBot():
              Please end your message with an emoji.
             """
             },
-        ]
+        ] + message_history
 
     def chat(self, message):
         self.messages.append({"role": "user", "content": message})
