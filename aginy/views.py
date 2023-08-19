@@ -10,22 +10,23 @@ def index(request):
     return render(request, "aginy/index.html", {})
 
 def chatpage(request):
-    # If user submits a new prompt on the chatpage via AJAX, send request to OpenAI API and return messages
+    # Sends prompt to OpenAI API, then updates message history in session and returns to client   
     is_ajax = request.META.get('HTTP_X_REQUESTED_WITH') == 'XMLHttpRequest'
-    if request.method == "POST" and is_ajax:
-        apikey = settings.OPENAI_API_KEY
-        bot = OpenAIBot(apikey, request.session['messages'])
-        prompt = request.POST.get("prompt")
-        bot.chat(prompt)
-        request.session['messages'] = bot.messages[1:]
-        ser_messages = json.dumps(request.session['messages'])
+    apikey = settings.OPENAI_API_KEY
+    # Reset messages if page was reloaded
+    if not is_ajax:
+        request.session['messages'] = []
+    # Initialises an OpenAI bot using message history
+    bot = OpenAIBot(apikey, request.session['messages'])
+    prompt = request.POST.get("prompt")
+    bot.chat(prompt)
+    # Updates message history in session and dumps into a JSON file for JavaScript processing 
+    request.session['messages'] = bot.messages[1:]
+    ser_messages = json.dumps(request.session['messages'])
+    # If first time on page, render HTML
+    if not is_ajax:
+        return render(request, "aginy/chat.html", {'messages': ser_messages})
+    # Otherwise, if prompt submitted from page, return the JSON file 
+    else:
         return JsonResponse({'messages': ser_messages}, status = 200)
-
-    # Otherwise, initialise a new chatbot, send request to OpenAI API and return messages
-    else:    
-        apikey = settings.OPENAI_API_KEY
-        bot = OpenAIBot(apikey)
-        prompt = request.POST.get("prompt")
-        bot.chat(prompt)
-        request.session['messages'] = bot.messages[1:]
-        return render(request, "aginy/chat.html", {'messages': request.session['messages']})
+    

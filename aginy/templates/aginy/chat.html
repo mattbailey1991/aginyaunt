@@ -10,10 +10,7 @@ Aginy Aunt
 {% endblock %}
 
 {% block body %}
-<div id="messages">
-    {% for message in messages %}
-    <p>{{ message.role }}: {{ message.content }}</p>
-    {% endfor %}
+<div id="message-area">
 </div>
 <div id="chatbox">
     <form id="chat-form" onsubmit = "return false">
