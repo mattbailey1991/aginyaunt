@@ -1,13 +1,19 @@
 $(document).ready(function(){
     
+    console.log(messages)
+    messages = JSON.parse(messages.replace(/&quot;/g,'"'));
+    console.log(messages)
+    console.log(messages[0].role)
     function update_page(messages) {
-        for (var message in messages) {
-            $("#message-area").append("<p>"+message.role+": "+message.content+"</p")
+        let i = 0;
+
+        while (i < messages.length) {
+            $("#message-area").append("<p>"+messages[i].role+": "+messages[i].content+"</p")
+            i++;
         }
     }
     
-    messages = "{{ messages }}";
-    console.log(messages);
+    console.log(messages)
     update_page(messages);
     
     $('#chat-form').submit(function (event) {
@@ -18,8 +24,11 @@ $(document).ready(function(){
             data: $(this).serialize(),
             success: function(response) {
                 $('#chat-form').trigger('reset');
-                var messages = response["messages"];
+                $("#message-area").html("")
+                messages = response["messages"];
+                messages = JSON.parse(messages.replace(/&quot;/g,'"'))
                 update_page(messages);
+                console.log(messages)
             }
         });
     });
