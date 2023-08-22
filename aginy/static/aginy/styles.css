@@ -61,6 +61,7 @@ body {
     min-height: 100vh;
     max-width: 100vw;
     font-family: "Poppins", sans-serif;
+    position: relative;
   }
 
 footer {
@@ -73,4 +74,66 @@ footer {
     background-color: #2F2F2F;
   }
 
+p {
+  width: 100%;
+}
+
+#message-area {
+  flex-grow: 1;
+  width: 100%;
+}
+
+#chatbox-area {
+  padding: 10px 0px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+#chatbox-area-front {
+padding: 10px 0px;
+display: flex;
+align-items: center;
+justify-content: center;
+position: absolute;
+bottom: 40px;
+}
+
+#chatbox {
+  width: 90%;
+  display: flex;
+  justify-content: center;
+}
+
+#chat-form {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+}
+
+.msg-item-area {
+  display: flex;
+  width: 100%;
+}
+
+.msg-item {
+  margin: 10px 10px 0px 10px;
+  background-clip: padding-box;
+  padding: 10px;
+  border-radius: 10px;
+  font-size: 18px;
+}
+
+.user-msg {
+  background: #db8a9e;
+}
   
+.agi-msg {
+  background: #F2BAC9;
+}
+
+.form-control {
+  display: inline;
+  width: 90%;
+  margin-right: 10px;
+} 

@@ -6,19 +6,24 @@ Aginy Aunt
 
 {% block scripts %}
 {% load static %}
-<script>var messages = "{{ messages }}"</script>
+<script>
+    var messages = "{{ messages }}";
+    var username = "{{ username }}";
+</script>
 <script type="text/javascript" src="{% static 'aginy/chatpage.js' %}"></script>
 {% endblock %}
 
 {% block body %}
 <div id="message-area">
 </div>
-<div id="chatbox">
-    <form id="chat-form" onsubmit = "return false">
-        {% csrf_token %}
-        <input type="text" id="prompt" name="prompt" placeholder="Tell me more...">
-        <input id ="submit-button" type="submit" value="Go">
-    </form>
+<div id = "chatbox-area" class="container-fluid">
+    <div id="chatbox">
+        <form id="chat-form" onsubmit = "return false">
+            {% csrf_token %}
+            <input type="text" class="form-control" id="prompt" name="prompt" placeholder="Tell me more...">
+            <input id ="submit-button" class = "btn btn-light" type="submit" value="Go">
+        </form>
+    </div>
 </div>
 
 {% endblock %}

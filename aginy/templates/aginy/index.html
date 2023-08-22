@@ -7,9 +7,13 @@ Aginy Aunt
 {% block body %}
 {% load static %}
 <img src="{% static 'aginy/teacup_home.png' %}">
-<form action="chat/" method="POST">
-    {% csrf_token %}
-    <input type="text" id="prompt" name="prompt" placeholder="Tell me all about it...">
-    <input type="submit" value="Go">
-</form>
+<div id="chatbox-area-front" class="container-fluid">
+    <div id="chatbox">
+        <form id="chat-form" action="chat/" method="POST">
+            {% csrf_token %}
+            <input type="text" class ="form-control" id="prompt" name="prompt" placeholder="Tell me all about it...">
+            <input type="submit" class="btn btn-light" value="Go">
+        </form>
+    </div>
+</div>
 {% endblock %}
