@@ -15,5 +15,9 @@ def save_chat(request):
     chat.save()
 
 
-def get_chat_history(request):
+def get_all_chats(request):
     return ChatHistory.objects.filter(user = request.user).order_by('-datetime').values()
+
+
+def get_chat_history(chat_id):
+    return ChatHistory.objects.get(pk=chat_id)

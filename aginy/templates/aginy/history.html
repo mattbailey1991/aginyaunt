@@ -11,7 +11,7 @@ History
 
 {% block body %}
 <div id="message-area">
-    <table class="table table-dark">
+    <table id="history-table" class="table table-dark">
         <thead>
           <tr>
             <th scope="col">#</th>
@@ -30,4 +30,10 @@ History
         </tbody>
       </table>
 </div>
+
+<form id="history-form" action="{% url 'chat' %}" method="POST" hidden>
+    {% csrf_token %}
+    <input type="text" id="chat-id" name="chat-id" value="None">
+    <input type="text" id="action-type" name="action-type" value="view">
+</form>
 {% endblock %}
