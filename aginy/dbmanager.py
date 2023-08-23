@@ -13,3 +13,7 @@ def save_chat(request):
         chat = ChatHistory(user = request.user, datetime = chat_start_time, title = chat_title, content = request.session["ser_messages"])
     
     chat.save()
+
+
+def get_chat_history(request):
+    return ChatHistory.objects.filter(user = request.user).order_by('-datetime').values()

@@ -4,12 +4,13 @@ from django.http import HttpResponse, JsonResponse
 from django.conf import settings
 from django.core import serializers
 from aginy.chatbot import OpenAIBot
-from aginy.dbmanager import save_chat
+from aginy.dbmanager import save_chat, get_chat_history
 import json
 import datetime as dt
 
 def index(request):
     return render(request, "aginy/index.html", {})
+
 
 def chatpage(request):
     # Sends prompt to OpenAI API, then updates message history in session and returns to client   
@@ -48,3 +49,7 @@ def chatpage(request):
             save_chat(request)
         return JsonResponse({'messages': request.session['ser_messages']}, status = 200)
     
+    
+def history(request):
+    chat_history = get_chat_history(request)
+    return render(request, "aginy/history.html", {'chat_history': chat_history})

@@ -137,3 +137,7 @@ bottom: 40px;
   width: 90%;
   margin-right: 10px;
 } 
+
+.chat-history:hover td, .chat-history:hover th{
+  background-color: #F2BAC9 !important;
+}

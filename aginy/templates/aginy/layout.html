@@ -26,12 +26,11 @@
                     </button>
                     <div class="collapse navbar-collapse justify-content-between" id="navbarNavAltMarkup">
                         <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
+                            {% if user.is_authenticated %}
                             <li>
-                                <a class="nav-link" href="info.html">Information</a>
+                                <a class="nav-link" href="{% url 'history' %}">Chat History</a>
                             </li>
-                            <li>
-                                <a class="nav-link" href="contact.html">Contact Us</a>
-                            </li>
+                            {% endif %}
                         </ul>
                         {% if not user.is_authenticated %}
                         <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
