@@ -9,13 +9,13 @@ Aginy Aunt: a therapy website powered by ChatGPT. This is a python web app using
 
 /aginyaunt/aginy is the main app for the project. The major files are
 
-####HTML Files
+#### HTML Files
 layout.html: Website layout and nav bar
 index.html: Home page for the website, where a new chat can be started
 chat.html: Live chat with Aginy Aunt bot
 history.html: Table of all previous chat histories for user. Hovering on a row will highlight it, and clicking will resume the chat.
 
-####Python Files
+#### Python Files
 
 chatbot.py: Defines the OpenAIBot class which opens a connection to the OpenAI API using a secret key which must be saved in the .env file and a message history (either initial prompt if accessed from homepage or full history if accessed from history page). The bot is initialised with a system prompt which tells it to act like a therapist, ask lots of questions, and recommend CBT techniques. Using the chat method with a prompt will fetch a completion from the OpenAI API.
 
@@ -30,7 +30,7 @@ views.py:
     history/: Runs get_all_chats in dbmanager.py and renders table of all chat histories.   
 
 
-####JavaScript Files
+#### JavaScript Files
 chatpage.js: i) parses chat history into user and bot messages, assigns the correct css class and then adds to DOM; ii) continuing a chat using 'tell me more' will submit an AJAX request to chat/; iii) while thinking, will display "Aginy Aunt: ..." to make the website appear more responsive.
 
 historypage.js: Gets ChatHistory id when a user clicks on a line in their history table, and sends to /chat. 
