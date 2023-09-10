@@ -2,9 +2,10 @@ $(document).ready(function(){
     
     // Parse the JSON messages file
     console.log(messages)
-    messages = JSON.parse(messages.replace(/&quot;/g,'"').replace(/"role": "assistant"/g,'"role": "Aginy Aunt"').replace(/"role": "user"/g,'"role":"' + username +'"'));
-    console.log(messages)
-
+    var stringified = JSON.stringify(messages);
+    stringified = stringified.replace(/"role":"assistant"/g,'"role": "Aginy Aunt"').replace(/"role":"user"/g,'"role":"' + username +'"');
+    messages = JSON.parse(stringified)
+    
     // Adds all messages to the message area
     function update_page(messages) {
         let i = 0;
@@ -41,6 +42,12 @@ $(document).ready(function(){
     // Sends prompt to server, then refreshes message area
     $('#chat-form').submit(function (event) {
         event.preventDefault();
+        $("#message-area").html("")
+        prompt = $("#prompt").val();
+        messages.push({'role':username, 'content':prompt});
+        messages.push({'role':'Aginy Aunt', 'content':'...'});
+        update_page(messages);
+        add_message_class();
         $.ajax({
             type: 'POST',
             url: "",
@@ -48,8 +55,10 @@ $(document).ready(function(){
             success: function(response) {
                 $('#chat-form').trigger('reset');
                 $("#message-area").html("")
-                messages = response["messages"];
-                messages = JSON.parse(messages.replace(/&quot;/g,'"').replace(/"role": "assistant"/g,'"role": "Aginy Aunt"').replace(/"role": "user"/g,'"role":"' + username +'"'));
+                messages = JSON.parse(response["messages"]);
+                var stringified = JSON.stringify(messages);
+                stringified = stringified.replace(/"role":"assistant"/g,'"role": "Aginy Aunt"').replace(/"role":"user"/g,'"role":"' + username +'"');
+                messages = JSON.parse(stringified)
                 update_page(messages);
                 add_message_class();
             }

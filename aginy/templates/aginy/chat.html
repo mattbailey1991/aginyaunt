@@ -7,7 +7,7 @@ Chat
 {% block scripts %}
 {% load static %}
 <script>
-    var messages = "{{ messages }}";
+    var messages = {{ messages|safe }};
     var username = "{{ username }}";
 </script>
 <script type="text/javascript" src="{% static 'aginy/chatpage.js' %}"></script>
@@ -20,7 +20,7 @@ Chat
     <div id="chatbox">
         <form id="chat-form" onsubmit = "return false">
             {% csrf_token %}
-            <input type="text" class="form-control" id="prompt" name="prompt" placeholder="Tell me more...">
+            <input type="text" autocomplete="off" class="form-control" id="prompt" name="prompt" placeholder="Tell me more...">
             <input id ="submit-button" class = "btn btn-light" type="submit" value="Go">
             <input type="text" id="action-type" name="action-type" value="chat" hidden>
         </form>
